@@ -17,3 +17,19 @@ Should be:
 Script:
 
 	sed -i 's/^\(\s*\)\S*\(log\)/\1\2/' server/src/main/groovy/**/*.groovy
+
+
+X
+-
+
+Problem:
+Start new session in an existing session.
+
+Srcipt:
+
+	#! /bin/bash
+	Xephyr -ac -screen 1910x1140 -br -reset -terminate 2> /dev/null :1 &
+	DISPLAY=:1.0
+	export DISPLAY=:1.0
+	ssh -XfC -c blowfish localhost gnome-session
+
