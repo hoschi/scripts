@@ -33,3 +33,10 @@ Srcipt:
 	export DISPLAY=:1.0
 	ssh -XfC -c blowfish localhost gnome-session
 
+ZSH
+---
+
+for in zsh:
+
+	for file in *.rar; unrar x ${file}
+	for i in {1..5}; umount-$i;
