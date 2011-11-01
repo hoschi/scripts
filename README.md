@@ -40,3 +40,12 @@ for in zsh:
 
 	for file in *.rar; unrar x ${file}
 	for i in {1..5}; umount-$i;
+
+ducksboard.com
+--------------
+
+Problem:
+Show filesystem usage as gauge.
+
+Script:
+see ducks-fs.sh
