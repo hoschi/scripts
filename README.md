@@ -48,4 +48,7 @@ Problem:
 Show filesystem usage as gauge.
 
 Script:
-see ducks-fs.sh
+see ducks-fs.sh and execute it by hand or create a line at your crontab
+with crontab -e and add following:
+
+	@hourly bash /home/hoschi/bin/ducks-fs.sh /home YOURDASHBOARDID YOURAPIKEY >> /dev/null
