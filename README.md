@@ -1,6 +1,19 @@
 My scripts
 ==========
 
+ducksboard.com
+--------------
+
+Problem:
+Show filesystem usage as gauge. See DucksFsSamplePicture.png
+
+Script:
+see ducks-fs.sh and execute it by hand or create a line at your crontab
+with crontab -e and add following:
+
+	@hourly bash /home/hoschi/bin/ducks-fs.sh /home YOURDASHBOARDID YOURAPIKEY >/dev/null
+
+
 Java
 ----
 
@@ -41,14 +54,3 @@ for in zsh:
 	for file in *.rar; unrar x ${file}
 	for i in {1..5}; umount-$i;
 
-ducksboard.com
---------------
-
-Problem:
-Show filesystem usage as gauge.
-
-Script:
-see ducks-fs.sh and execute it by hand or create a line at your crontab
-with crontab -e and add following:
-
-	@hourly bash /home/hoschi/bin/ducks-fs.sh /home YOURDASHBOARDID YOURAPIKEY >/dev/null
