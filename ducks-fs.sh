@@ -15,6 +15,6 @@ value=$(echo $data | sed 's/%//')
 
 echo "your filesystem is $data full"
 echo "submitting value 0.$value"
-echo $(curl -u $3:ignored -d "{\"value\": 0.$value}"  https://push.ducksboard.com/values/$2/)
+echo $(curl -silent -u $3:ignored -d "{\"value\": 0.$value}"  https://push.ducksboard.com/values/$2/)
 echo "finished"
 
