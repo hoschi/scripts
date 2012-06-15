@@ -76,7 +76,7 @@ How to generate file names:
 
 ## Linux
 
-Problem:
+### Permissions
 Set permission only for files or folders.
 
 Files:
@@ -87,6 +87,13 @@ Folders:
 
 	find . -type d -exec chmod 0755 {} \;
 
-Problem:
+### Screen
+
 Create screen session at startup automataically so you can always join it and
 never must create it. See create-screen.sh and at this to your startup routine.
+
+### ack-grep
+
+* ack-grep defaults to case sensitive search, use ack-grep -i to change this
+* only search for files with special type "ack-grep --type-set=groovy=.groovy --type=groovy SEARCH ."
+
