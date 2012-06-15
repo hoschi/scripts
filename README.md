@@ -50,6 +50,30 @@ for in zsh:
 	for file in *; do pwd; echo "this is a test ${file}"; done
 	for i in {1..5}; umount-$i;
 
+How to generate file names:
+
+[See manual](http://www.cs.elte.hu/zsh-manual/zsh_6.html#SEC33)
+
+* \*
+  * Matches any string, including the null string.
+* ?
+  * Matches any character.
+* [...]
+  * Matches any of the enclosed characters. Ranges of characters can be specified by separating two characters by a -. A - or ] may be matched by including it as the first character in the list.
+* [^...]
+* [!...]
+  * Like [...], except that it matches any character which is not in the given set.
+* \<x-y\>
+  * Matches any number in the range x to y, inclusive. If x is omitted, the number must be less than or equal to y. If y is omitted, the number must be greater than or equal to x. A pattern of the form <-> matches any number.
+* ^x
+  * Matches anything except the pattern x.
+* x|y
+  * Matches either x or y.
+* x#
+  * Matches zero or more occurrences of the pattern x.
+* x##
+  * Matches one or more occurrences of the pattern x.
+
 ## Linux
 
 Problem:
