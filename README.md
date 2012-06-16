@@ -97,3 +97,21 @@ never must create it. See create-screen.sh and at this to your startup routine.
 * ack-grep defaults to case sensitive search, use ack-grep -i to change this
 * only search for files with special type "ack-grep --type-set=groovy=.groovy --type=groovy SEARCH ."
 
+# Backup
+
+## MongoDb Collections
+
+See backup-mongo-filing.sh
+
+This script needs an git repository and a added file named "filing.json".
+You can achive this by:
+
+    mkdir filing
+    cd filing
+    git init
+    echo "backup" > Readme.md
+    git add Readme.md
+    git commit -m "init"
+    echo "foo bar" > filing.json
+    git add filing.json
+    git commit -m "add filing.json backup file"
