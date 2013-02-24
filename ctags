@@ -1,0 +1,84 @@
+#! /usr/bin/env coffee
+
+fs = require('fs')
+util = require('util')
+exec = require('child_process').exec
+
+# log debug messages to file if enabled
+debug = false
+
+# puts to stdout
+puts = (error, stdout, stderr) ->
+    util.puts(stdout)
+
+# get user home
+getUserHome = () ->
+    if (process.platform is 'win32')
+        v = 'USERPROFILE'
+    else
+        v = 'HOME'
+    process.env[v]
+
+# set up logging
+if debug
+    logStream = fs.createWriteStream(getUserHome() + '/log/ctags.log', {'flags': 'a'})
+    log = (text) ->
+        logStream.write(text + "\n")
+else
+    log = () ->
+
+# shift iced and script name away
+process.argv = process.argv[2..]
+
+# log input vars
+log(process.argv.join("___"))
+
+# get input files
+inputFiles = []
+foundJS = false
+
+for i in [process.argv.length-1..0]
+    inputFile = process.argv[i]
+    log "testing for file name " + inputFile
+    if /(^\/|^~\/|.*\.js$)/.test(inputFile) is false then break
+    inputFiles.push inputFile
+    if /.*\.js$/.test(inputFile) is true then foundJS = true
+
+log 'found js files? ' + foundJS
+
+# ctags call
+if process.argv.indexOf("--language-force=javascript") < 0 and foundJS is false
+    log 'ctags call'
+    exec("/usr/bin/ctags " + process.argv.join(" "), puts)
+    return
+
+log 'jsctags call'
+
+# command string
+cmd = "jsctags "
+
+# set output file to argument or standard file name 'tags'
+outputFileIndex = process.argv.indexOf("-f")
+if outputFileIndex >= 0
+    outputFile = process.argv[outputFileIndex+1]
+else
+    outputFile = 'tags'
+
+# append file or overwrite old one?
+if process.argv.indexOf("-a") < 0
+    log 'write output to file'
+    cmd += "-f " + outputFile + " "
+    cmd += inputFiles.join(" ")
+
+else
+    log 'append output to file'
+    cmd += "-f - "
+    cmd += inputFiles.join(" ") + " "
+    #wrong ... tag files says its unsorted
+    #if process.argv.indexOf("-s") >= 0
+        #cmd += "| sort "
+    cmd += ">> " + outputFile
+
+# execute jsctags command
+log 'command: ' + cmd
+exec(cmd, puts)
