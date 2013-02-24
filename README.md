@@ -1,5 +1,13 @@
 # My scripts
 
+## VIM
+
+Problem:
+Refresh tags file with `jsctags` instead of `ctags` when file changed.
+
+Solution:
+Indexer plugin and ctags script of this repo. See [blog post](http://vollekannehoschi.wordpress.com/2013/02/24/refresh-vim-tags-file-for-javascript-with-jsctags/).
+
 ## ducksboard.com
 
 Problem:
