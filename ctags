@@ -50,7 +50,7 @@ foundJS = false
 for i in [process.argv.length-1..0]
     inputFile = process.argv[i]
     log "testing for file name " + inputFile
-    if /(^\/|^~\/|.*\.js$)/.test(inputFile) is false then break
+    if /(^-)/.test(inputFile) is true then break
     # test for next switch
     if i > 0 and process.argv[i-1] is '-f' then break
     # all ok, add input file
@@ -90,7 +90,7 @@ else
     #wrong ... tag files says its unsorted
     #if process.argv.indexOf("-s") >= 0
         #cmd += "| sort "
-    cmd += ">> " + outputFile
+    cmd += " | tail -n +7 >> " + outputFile
 
 # execute jsctags command
 log 'command: ' + cmd
