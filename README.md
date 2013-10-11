@@ -123,3 +123,7 @@ You can achive this by:
     echo "foo bar" > filing.json
     git add filing.json
     git commit -m "add filing.json backup file"
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/hoschi/scripts/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
