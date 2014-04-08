@@ -1,0 +1,46 @@
+#!/usr/bin/groovy
+
+fileName = args[0]
+searchText = args[1];
+nText = args[2];
+nIcon = null
+
+if (args.size() > 3) {
+	nIcon = args[3];
+}
+
+sampleInterval = 1000 // 2000 millis = 2 secs
+filePointer = 0 // set to logfile.size() to begin tailing from the end of the file
+last = ''
+reprint = false
+
+logfile = new File(fileName)
+file = new RandomAccessFile( logfile, "r" )
+while( true ) {
+    // Compare the length of the file to the file pointer
+    long fileLength = logfile.size()
+    if( fileLength < filePointer ) {
+        // Log file must have been rotated or deleted;
+        System.err.println "${new Date()}: Reopening $logfile"
+        file = new RandomAccessFile( logfile, "r" )
+        filePointer = 0
+    }
+    if( fileLength > filePointer ) {
+        // There is data to read
+        file.seek( filePointer )
+        while( (line = file.readLine()) != null ) {
+			if (line.size() > 0) {
+				if (line =~ searchText) {
+					def cmd = ['notify-send', nText]
+					if (nIcon) {
+						cmd = (cmd << ['-i', nIcon]).flatten()
+					}
+					cmd.execute();
+				}
+			}
+        }
+        filePointer = file.filePointer
+    }
+    // Sleep for the specified interval
+    Thread.sleep( sampleInterval )
+}

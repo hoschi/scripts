@@ -37,6 +37,18 @@ Script:
 	sed -i 's/^\(\s*\)\S*\(log\)/\1\2/' server/src/main/groovy/**/*.groovy
 
 
+Problem:
+Due to its slowness, inform me when task finished.
+
+Script:
+Use provided notification script to scan log of task startup.
+
+    ./notifyForText  /home/user/repos/project/grails.log 'Server running. Browse to http' 'Slow server started ...' icon.png
+
+This shows you a notification when the server started with your specified icon (optional).
+
+
+
 ## X
 
 Problem:
