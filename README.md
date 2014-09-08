@@ -136,6 +136,11 @@ You can achive this by:
     git add filing.json
     git commit -m "add filing.json backup file"
 
+# Git
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/hoschi/scripts/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+## show all commits which in one branch but not in any other
+
+'''
+B="branchInQuestion" bash -c 'git log --no-merges $B --not $(git for-each-ref --format="%(refname)" refs/heads/ | grep -v "refs/heads/$B") $(git branch -r | cut -d" " -f3 | grep -v "$B" )'
+'''
 
