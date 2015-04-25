@@ -1,0 +1,5 @@
+#! /bin/zsh
+
+[ -s "/home/hoschi/.nvm/nvm.sh" ] && . "/home/hoschi/.nvm/nvm.sh" # This loads nvm
+nvm use 0.8.26
+taginator $*
