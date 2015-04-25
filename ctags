@@ -77,6 +77,7 @@ if outputFileIndex >= 0
 else
     outputFile = 'tags'
 
+log 'outputFile: ' + outputFile
 # append file or overwrite old one?
 if process.argv.indexOf("-a") < 0
     log 'write output to file'
