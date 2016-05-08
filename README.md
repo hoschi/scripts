@@ -96,6 +96,12 @@ How to generate file names:
 
 ## Linux
 
+### xargs
+
+Run command for every line, e.g. create one notification for each log output line
+
+    tail -n 0 -f /var/log/rsnapshot.log | xargs -L1 -d "\n" notify-send
+
 ### Permissions
 Set permission only for files or folders.
 
